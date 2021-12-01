@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Something } from './something.model';
 
 @Component({
   selector: 'null-check',
@@ -12,6 +13,8 @@ export class NullCheckComponent {
   result: string = '';
 
   num: number = 0;
+
+  something: Something | null = null;
 
   constructor() {
     if (this.result) {
@@ -37,5 +40,10 @@ export class NullCheckComponent {
     } else {
       this.result += ' - num is nothing';
     }
+
+    const json = JSON.parse(JSON.stringify(this.something));
+    this.result += ' - ' + json;
+    console.log("the following is json");
+    console.log(json);
   }
 }
